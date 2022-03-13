@@ -1,10 +1,66 @@
-import React, {useState } from "react";
+import React, {useState, useContext, useCallback, useEffect } from "react";
+import axios from "axios"
 
 
 
-
-export default function SellPage() {
+const SellPage = () => {
     
+  const [color, setColor] = useState('')
+  const [nameMark, setNameMark] = useState('')
+  const [infoAbout, setInfoAbout] = useState('')
+  const [gear, setGear] = useState('')
+  const [year, setYear] = useState('')
+  const [mileage, setMileage] = useState('')
+  const [price, setPrice] = useState('')
+  const [telephone, setTelephone] = useState('')
+  const [city, setCity] = useState('')
+  
+  const [sells, setSells] = useState([])
+
+  const getSell = useCallback(async () => {
+      try {
+         await axios.get('/api/sell',{
+             headers:{
+                  'Content-Type': 'application/json'
+             },
+             
+         }) 
+         .then((responce) => setSells(responce.data))
+      } catch (error) {
+          console.log(error)
+      }
+  },[])
+
+  const createSell = useCallback(async () => {
+      if (!nameMark) return null
+      try {
+          await axios.post('/api/sell/add',{color,nameMark,infoAbout,gear,year,mileage,price,telephone,city}, {
+              headers:{'Content-Type': 'application/json'}
+          })
+          .then((response)=> {
+              setSells([...sells], response.data)
+              setColor('')
+              setNameMark('')
+              setInfoAbout('')
+              setGear('')
+              setYear('')
+              setMileage('')
+              setPrice('')
+              setTelephone('')
+              setCity('')
+              getSell()
+          })
+      } catch (error) {
+          console.log(error)
+      }
+  },[color,nameMark,infoAbout,gear,year,mileage,price,telephone,city, sells, getSell])
+
+  useEffect(()=>{
+      getSell()
+  },[getSell])
+
+
+
     const [file, setFile] = useState(null)
     const fileHandler = (e) => {
     setFile(e.target.files[0])
@@ -24,7 +80,7 @@ export default function SellPage() {
           </div>
         </div>
       <div className="input-field col s6">
-        <select>
+        <select id="color" value={color} onChange={e => setColor(e.target.value)}>
           <option value="" disabled selected>Выберите цвет</option>
           <option value="1">Белый</option>
           <option value="2">Серый</option>
@@ -44,20 +100,32 @@ export default function SellPage() {
       <form className="col s12">
         <div className="row">
           <div className="input-field col s6">
-            <input placeholder="Введите полное название автомобиля" id="year" type="text" class="validate"/>
+            <input placeholder="Введите полное название автомобиля" 
+            id="nameMark" 
+            type="text" 
+            class="validate"
+            value={nameMark} 
+             onChange={e => setNameMark(e.target.value)}
+            />
               <label for="first_name">Марка/Модель</label>
           </div>
         </div>
         <div className="row">
           <div className="input-field col s6" >
-            <input placeholder="объем двигателя/л.с/тип двигателя" id="year" type="text" class="validate"/>
-              <label for="first_name">Введите характеристики автомобиля</label>
+            <input placeholder="объем двигателя/л.с/тип двигателя"
+             id="infoAbout" 
+             type="text" 
+             class="validate"
+             value={infoAbout} 
+             onChange={e => setInfoAbout(e.target.value)}/>
+            <label for="first_name">Введите характеристики автомобиля</label>
           </div>
         </div>  
-
-        {/* Вставить объем/л.с/тип движка */}
         <div className="input-field ">
-        <select>
+        <select 
+          id="gear"           
+          value={gear} 
+          onChange={e => setGear(e.target.value)}>
           <option value="" disabled selected>Выберите тип привода</option>
           <option value="1">Задний</option>
           <option value="2">Передний</option>
@@ -67,37 +135,68 @@ export default function SellPage() {
       </div>    
       <div className="row">
           <div className="input-field col s6">
-            <input placeholder="Введите год выпуска" id="year" type="text" class="validate"/>
+            <input placeholder="Введите год выпуска"
+             id="year" 
+             type="text" 
+             class="validate"
+             value={year} 
+             onChange={e => setYear(e.target.value)}
+            />
               <label for="first_name">Год выпуска</label>
           </div>
       </div>     
               <div className="row">
                 <div className="input-field col s6">
-                  <input placeholder="Введите пробег" id="year" type="text" class="validate"/>
+                  <input placeholder="Введите пробег" 
+                  id="mileage" 
+                  type="text" 
+                  class="validate"
+                  value={mileage} 
+                  onChange={e => setMileage(e.target.value)}
+                  />
                     <label for="first_name">Пробег</label>
                 </div>
               </div>                    
               <div className="row">
                 <div className="input-field col s6">
-                  <input placeholder="Введите стоимость"  id="year" type="text" class="validate"/>
+                  <input placeholder="Введите стоимость"  
+                    id="price" 
+                    type="text" 
+                    class="validate"
+                    value={price} 
+                    onChange={e => setPrice(e.target.value)}
+                    />
                     <label for="first_name">Стоимость</label>
                 </div>
               </div>                      
               <div className="row">
                 <div className="input-field col s6">
-                  <input placeholder="+7(xxx)-xxx-xx-xx" id="year" type="text" class="validate"/>
+                  <input placeholder="+7(xxx)-xxx-xx-xx" 
+                  id="telephone" 
+                  type="text" 
+                  class="validate"
+                  value={telephone} 
+                  onChange={e => setTelephone(e.target.value)}
+                  />
                     <label for="first_name">Введите номер вашего телефона</label>
                 </div>
               </div>           
               <div className="row">
                 <div className="input-field col s6">
-                  <input placeholder="Введите город продажи" id="year" type="text" class="validate"/>
+                  <input placeholder="Введите город продажи" 
+                  id="city" 
+                  type="text" 
+                  class="validate"
+                  value={city} 
+                  onChange={e => setCity(e.target.value)}
+                  />
                     <label for="first_name">Город продажи</label>
                 </div>
               </div>
       </form>
     </div>
-    <button className="btn" type="submit">Разместить объявление</button>
+    <button className="btn"  onClick={createSell}>Разместить объявление</button>
   </div>
   )
   }
+  export default SellPage

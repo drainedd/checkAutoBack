@@ -24,7 +24,7 @@ function Card (props){
         <div className='modalCard'>
         <img className='carImage' width={185} height={134} src={props.imageUrl} alt="Car"/>
         <div className="titleModal">
-            <h4>{props.nameMark}<span> • </span>{props.price}</h4>
+            <h5>{props.nameMark}<span> • </span>{props.price}</h5>
             <div className='infoModal'>
             <div className="informationModal">{props.infoAbout}</div>
             <div className="information2Modal">{props.infoAbout2}</div>
