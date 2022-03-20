@@ -1,11 +1,13 @@
 import axios from "axios"
-import React, { useState, useContext, useCallback, useEffect } from "react"
+import React, { useState, useCallback, useEffect } from "react"
 
 import './OrderPage.scss'
+
 
 const OrderPage = () => {
     const [text, setText] = useState('')
     const [text2, setText2] = useState('')
+    const [about, setAbout] = useState('')
     
     const [todos, setTodos] = useState([])
 
@@ -26,19 +28,20 @@ const OrderPage = () => {
     const createTodo = useCallback(async () => {
         if (!text) return null
         try {
-            await axios.post('/api/todo/add',{text,text2}, {
+            await axios.post('/api/todo/add',{text,text2,about}, {
                 headers:{'Content-Type': 'application/json'}
             })
             .then((response)=> {
                 setTodos([...todos], response.data)
                 setText('')
                 setText2('')
+                setAbout('')
                 getTodo()
             })
         } catch (error) {
             console.log(error)
         }
-    },[text, text2, todos, getTodo])
+    },[text, text2,about, todos, getTodo])
 
     useEffect(()=>{
         getTodo()
@@ -71,33 +74,26 @@ const OrderPage = () => {
                                 onChange={e => setText2(e.target.value)}
                             />
                             <label htmlFor="input">Введите стоимость</label>
+                            
+                        </div>
+                        <div className="input-field col s12">
+                        <i className="material-icons prefix">mode_edit</i>
+                        <textarea id="icon_prefix2" 
+                        className="materialize-textarea" 
+                        value={about}
+                        onChange={e => setAbout(e.target.value)}>  
+                        </textarea>
+                        <label for="icon_prefix2">Введите дополнительную информацию/пожелания об автомобиле и ваш номер телефона</label>
                         </div>
                     </div>
                     <div className="row">
                     <button
-                        className="waves-effect waves-light btn blue"
+                        className="btn right "
                         onClick={createTodo}
                     >Отправить заявку</button>
                     </div>
                 </form>
-                <h3>Активные задачи</h3>
-                <div className="todos">
-                    {
-                       todos.map((todo,index) =>{
-                            return(
-                                <div className="row flex todos-item" key={index}>
-                                    <div className="col todos-num">{index + 1}</div>
-                                        <div className="col todos-text">{todo.text}</div>
-                                            <div className="col todos-buttons">
-                                                <i className="material-icons blue-text">check</i>
-                                                <i className="material-icons orange-text">warning</i>
-                                                <i className="material-icons red-text">delete</i>
-                                            </div>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
+                
             </div>
         </div>
     )

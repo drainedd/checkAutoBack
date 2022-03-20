@@ -1,8 +1,18 @@
 .auth-page{
+    position:absolute;
+    background-color: white;
+    box-shadow: 0 0 5px black;
     text-align: center;
-    max-width: 600px;
+    width: 500px;
     margin: 0 auto;
     margin-top: 150px;
+    margin-left: 300px;
+    border-radius: 15px;
+    button{
+        color:black;
+        font-weight: 600;
+    }
+    
     .btn-reg{
         margin-left: 25px;
     }

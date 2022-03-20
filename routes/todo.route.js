@@ -4,13 +4,12 @@ const Todo = require('../models/Todo')
 
 router.post('/add', async (req,res) => {
     try {   
-        const {text,text2} = req.body
+        const {text,text2,about} = req.body
 
         const todo = await new Todo({
             text,
             text2,
-            completed:false,
-            important:false
+            about
         })
 
         await todo.save()

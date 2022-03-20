@@ -19,7 +19,7 @@ function Card (props){
                 <div className="year">{props.year}</div>
                 <div className="mileage">{props.mileage}</div>
             </div>
-        <button className="contact" onClick={() => setModalActive(true)}>Показать телефон</button>
+        <button className="btn contact" onClick={() => setModalActive(true)}>Показать телефон</button>
         <Modal active={modalActive} setActive={setModalActive}>
         <div className='modalCard'>
         <img className='carImage' width={185} height={134} src={props.imageUrl} alt="Car"/>

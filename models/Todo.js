@@ -4,8 +4,8 @@ const schema = new Schema({
     
     text: {type:String},
     text2: {type:String},
-    completed: false,
-    important: false
+    about: {type:String}
+    
 })
 
 module.exports = model('Todo', schema)

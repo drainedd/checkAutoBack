@@ -1,0 +1,54 @@
+.section {
+	height: 100vh;
+	background: url(https://sun9-32.userapi.com/impg/CiUGBo7uo-1Wo8VHyQ6hgwRpz4-azS9yvoh_nA/azEZgnYpkrA.jpg?size=1280x579&quality=96&sign=5b93a2ea55c12d903713334b26580177&type=album);
+	background-size: cover;
+	background-repeat: no-repeat;
+  background-position: center center;
+ 
+}
+
+h1{
+    text-align: center;
+    font-size: 46px;
+    font-weight: 400;
+    margin-top: 18%;
+    font-family: 'Metrophobic' sans-serif;
+    text-shadow: 1.5px 1.5px 1.5px white;
+   }
+   h4{
+     text-align: center;
+     font-size: 30px;
+    font-weight: 400;
+    font-family: 'Metrophobic' sans-serif;
+    text-shadow: 1.5px 1.5px 1.5px white;
+   }
+   .chatBot{
+    width: 45px;
+    height: 45px;
+    border: 0 solid #ffffff;
+    border-radius: 50%;
+    position: fixed;
+    opacity: 1;
+    display: inline-block;
+    right: 2%;
+    bottom: 5%;
+  }
+  @keyframes bounce {
+    0%, 20%, 60%, 100% {
+      transform: translateY(0);
+      transform: translateY(0);
+    }
+  
+    40% {
+      transform: translateY(-20px);
+      transform: translateY(-20px);
+    }
+  
+    80% {
+      transform: translateY(-10px);
+      transform: translateY(-10px);
+    }
+  }
+  .chatBot:hover{
+    animation: bounce 1s;
+  }

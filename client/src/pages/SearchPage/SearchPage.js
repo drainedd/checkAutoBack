@@ -1,21 +1,30 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Card from '../../components/CardSearch';
-import './SearchPage.scss'
-
+import './SearchPage.css'
+import axios from "axios"
 
 export default function SearchPage() {
-  const [items, setItems] = React.useState([])
-  React.useEffect(()=>{
-    fetch('https://61fd5863f62e220017ce449d.mockapi.io/items')
-    .then((res)=>{
-      return res.json();
-    })
-    .then((json)=>{
-      setItems(json);
-    })
-  },[]);
+  const [sells, setSells] = useState([])
+
+  const getSell = useCallback(async () => {
+      try {
+         await axios.get('/api/sell',{
+             headers:{
+                  'Content-Type': 'application/json'
+             },
+             
+         }) 
+         .then((responce) => setSells(responce.data))
+      } catch (error) {
+          console.log(error)
+      }
+  },[])
+  useEffect(()=>{
+    getSell()
+},[getSell])
+
     return(
-    <div className='row'>
+    <div className='row body'>
       <div class="container">
         <form className="find col s12">
       <div className="row">
@@ -42,7 +51,7 @@ export default function SearchPage() {
       </div>
           <div>
 
-            {items.map((obj)=>(
+            {sells.map((obj)=>(
               <Card 
                 nameMark={obj.nameMark} 
                 infoAbout={obj.infoAbout}

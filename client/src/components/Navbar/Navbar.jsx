@@ -4,21 +4,18 @@ import { AuthContext } from "../../Context/AuthContext";
 import logo from './logo.svg'
 import "./Navbar.scss"
 
-import MainPage from '../../pages/MainPage/MainPage';
-import OrderPage from '../../pages/OrderPage/OrderPage';
-
 const Navbar = () => {
   const {logout, isLogin} = useContext(AuthContext)
 
   return (
     <nav>
-      <div className="nav-wrapper navbar blue">
-        <a href="/MainPage" className="brand-logo">
+      <div className="nav-wrapper navbar grey lighten-2">
+        <a href="/" className="brand-logo">
         <img src={logo} alt="" width='200px' height='80px'/>
         </a>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li className="menuButton">
-              <Link  to="/MainPage" style={{color:'black', textDecoration:'none'}} >Главная</Link>
+              <Link  to="/" style={{color:'black', textDecoration:'none'}} >Главная</Link>
             </li>
             <li className="menuButton">
               <Link to="/SearchPage" style={{color:'black', textDecoration:'none'}}>Найти авто</Link>
@@ -31,12 +28,12 @@ const Navbar = () => {
             </li>
          {
           isLogin
-         ? <li>
-           <a href="/" onClick={logout}>Выйти</a>
+         ? <li >
+           <a href="/" onClick={logout} style={{color:'black', textDecoration:'none'}}>Выйти</a>
          </li>
         : 
             <li>
-              <a href="/login">Войти</a>
+              <a href="/login" style={{color:'black', textDecoration:'none'}}>Войти</a>
             </li>
         }
 
