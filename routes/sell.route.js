@@ -2,12 +2,13 @@ const {Router} = require('express')
 const router = Router()
 const Sell = require('../models/Sell')
 
-router.post('/add', async (req,res) => {
+
+router.post('/add' , async (req,res) => {
     try {   
-        const {color,nameMark,infoAbout,gear,year,mileage,price,telephone,city,imageUrl} = req.body
+        const {color,nameMark,infoAbout,gear,year,mileage,price,telephone,city} = req.body
 
         const sell = await new Sell({
-            imageUrl,
+            
             color,
             nameMark,
             infoAbout,
@@ -28,7 +29,7 @@ router.post('/add', async (req,res) => {
     }
 })
 
-router.get('/', async(req,res)=>{
+router.get('/',  async(req,res)=>{
     try {
 
         const sell = await Sell.find({})
