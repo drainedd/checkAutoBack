@@ -11,7 +11,7 @@ import MainPage from './pages/MainPage/MainPage';
 import OrderPage from './pages/OrderPage/OrderPage';
 import SellPage from './pages/SellPage/SellPage';
 import SearchPage from './pages/SearchPage/SearchPage';
-
+import chatImg from './chatbot.png'
 
 
 function App() {
@@ -23,6 +23,11 @@ function App() {
   return (
     <AuthContext.Provider value={{login, logout, token, userId, isReady, isLogin }}>
     <div className="app">
+    <div className='chatBot'>
+                <a href='https://t.me/CheckAuto116_Bot' target="blank">
+                    <img src={chatImg} alt="" width='45px' height='45px'/>
+                </a>
+            </div>
       <BrowserRouter>
        <Navbar/>
        { routes }
