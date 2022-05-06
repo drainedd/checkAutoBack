@@ -26,6 +26,9 @@ const Navbar = () => {
             <li className="menuButton">
               <Link to="/OrderPage" style={{color:'black', textDecoration:'none'}}>Заказать подбор</Link>
             </li>
+            <li className="menuButton">
+              <Link to="/MyOrdersPage" style={{color:'black', textDecoration:'none'}}>Мои объявления</Link>
+            </li>
          {
           isLogin
          ? <li >

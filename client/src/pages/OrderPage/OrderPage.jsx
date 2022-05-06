@@ -37,6 +37,7 @@ const OrderPage = () => {
                 setText2('')
                 setAbout('')
                 getTodo()
+                
             })
         } catch (error) {
             console.log(error)

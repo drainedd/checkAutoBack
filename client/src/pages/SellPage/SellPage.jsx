@@ -44,7 +44,7 @@ const SellPage = () => {
       }
   },[color,nameMark,infoAbout,gear,year,mileage,price,telephone,city])
 
- 
+  
 
 
     return (
@@ -54,7 +54,7 @@ const SellPage = () => {
           <input type="file" multiple/>
             <div>Загрузить фото</div>
         </div>
-          <div className="file-path-wrapper">
+          <div className="file-path-wrapper inputPhoto">
               <input className="file-path validate"
                type="text"
                placeholder="Выберите фотографии"
@@ -96,8 +96,8 @@ const SellPage = () => {
           <div className="input-field col s6">
             <input 
              id="year" 
-             type="text" 
-             className="validate"
+             type="number" 
+             className="validate raz"
              value={year} 
              onChange={e => setYear(e.target.value)}
             />
@@ -108,11 +108,12 @@ const SellPage = () => {
                 <div className="input-field col s6">
                   <input 
                   id="mileage" 
-                  type="text" 
-                  className="validate"
+                  type="number" 
+                  className="validate raz"
                   value={mileage} 
                   onChange={e => setMileage(e.target.value)}
                   />
+                  
                     <label for="first_name">Пробег</label>
                 </div>
               </div>                    
@@ -120,11 +121,11 @@ const SellPage = () => {
                 <div className="input-field col s6">
                   <input   
                     id="price" 
-                    type="text" 
-                    className="validate"
+                    type="number" 
+                    className="validate raz"
                     value={price} 
                     onChange={e => setPrice(e.target.value)}
-                    />
+                    /> 
                     <label for="first_name">Стоимость</label>
                 </div>
               </div>                      
@@ -132,8 +133,8 @@ const SellPage = () => {
                 <div className="input-field col s6">
                   <input  
                   id="telephone" 
-                  type="text" 
-                  className="validate"
+                  type="number" 
+                  className="validate raz"
                   value={telephone} 
                   onChange={e => setTelephone(e.target.value)}
                   />

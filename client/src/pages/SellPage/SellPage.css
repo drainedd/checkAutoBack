@@ -1,3 +1,14 @@
 .sell{
     margin-bottom: 20px;
 }
+
+.inputPhoto{
+    width: 350px;
+}
+
+.raz { 
+    -moz-appearance: textfield;
+  }
+  .raz::-webkit-inner-spin-button { 
+    display: none;
+  }
