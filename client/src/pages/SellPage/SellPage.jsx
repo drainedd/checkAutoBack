@@ -7,7 +7,7 @@ import './SellPage.css'
 
 const SellPage = () => {
  
-  const [color, setColor] = useState('')
+  const [imageUrl, setImageUrl] = useState('')
   const [nameMark, setNameMark] = useState('')
   const [infoAbout, setInfoAbout] = useState('')
   const [gear, setGear] = useState('')
@@ -23,12 +23,12 @@ const SellPage = () => {
   const createSell = useCallback(async () => {
       if (!nameMark) return null
       try {
-          await axios.post('/api/sell/add',{color,nameMark,infoAbout,gear,year,mileage,price,telephone,city}, {
+          await axios.post('/api/sell/add',{imageUrl,nameMark,infoAbout,gear,year,mileage,price,telephone,city}, {
               headers:{'Content-Type': 'application/json'}
           })
           .then(()=> {
             
-              setColor('')
+              setImageUrl('')
               setNameMark('')
               setInfoAbout('')
               setGear('')
@@ -42,7 +42,7 @@ const SellPage = () => {
       } catch (error) {
           console.log(error)
       }
-  },[color,nameMark,infoAbout,gear,year,mileage,price,telephone,city])
+  },[imageUrl,nameMark,infoAbout,gear,year,mileage,price,telephone,city])
 
   
 
@@ -51,14 +51,18 @@ const SellPage = () => {
     <div className="container">
       <div className="file-field input-field">
         <div className="btn">
-          <input type="file" multiple/>
+          <input type="file"
+           multiple
+           value={imageUrl} 
+           onChange={e => setImageUrl(e.target.value)}
+           />
             <div>Загрузить фото</div>
         </div>
           <div className="file-path-wrapper inputPhoto">
               <input className="file-path validate"
                type="text"
                placeholder="Выберите фотографии"
-              
+               
                />
           </div>
         </div>

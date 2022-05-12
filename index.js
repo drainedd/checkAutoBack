@@ -8,6 +8,7 @@ app.use(express.json({extended: true}))
 app.use('/api/auth', require('./routes/auth.route'))
 app.use('/api/todo', require('./routes/todo.route'))
 app.use('/api/sell', require('./routes/sell.route'))
+app.use('/api/review', require('./routes/review.route'))
 
 async function start(){ 
     try {

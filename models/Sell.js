@@ -2,7 +2,7 @@ const {Schema, model, Types} = require('mongoose')
 
 const schema = new Schema({
     
-    color: {type:String},
+    imageUrl: {type:String},
     nameMark: {type:String},
     infoAbout: {type:String},
     gear: {type:String},

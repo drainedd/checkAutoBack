@@ -12,6 +12,7 @@ import OrderPage from './pages/OrderPage/OrderPage';
 import SellPage from './pages/SellPage/SellPage';
 import SearchPage from './pages/SearchPage/SearchPage';
 import MyOrdersPage from './pages/MyOrdersPage/MyOrdersPage';
+import ReviewPage from './pages/ReviewPage/ReviewPage';
 import chatImg from './chatbot.png'
 
 
@@ -44,6 +45,9 @@ function App() {
           </Route>
           <Route path="/MyOrdersPage">
             <MyOrdersPage />
+          </Route>
+          <Route path="/ReviewPage">
+            <ReviewPage />
           </Route>
           <Route path="/">
             <MainPage/>

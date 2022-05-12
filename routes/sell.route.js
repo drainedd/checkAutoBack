@@ -5,11 +5,11 @@ const Sell = require('../models/Sell')
 
 router.post('/add' , async (req,res) => {
     try {   
-        const {color,nameMark,infoAbout,gear,year,mileage,price,telephone,city} = req.body
+        const {imageUrl,nameMark,infoAbout,gear,year,mileage,price,telephone,city} = req.body
 
         const sell = await new Sell({
             
-            color,
+            imageUrl,
             nameMark,
             infoAbout,
             gear,
