@@ -10,6 +10,7 @@ app.use('/api/todo', require('./routes/todo.route'))
 app.use('/api/sell', require('./routes/sell.route'))
 app.use('/api/review', require('./routes/review.route'))
 
+
 async function start(){ 
     try {
         mongoose.connect('mongodb+srv://root:root@cluster0.ybqp1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{

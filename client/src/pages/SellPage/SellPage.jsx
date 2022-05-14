@@ -1,6 +1,9 @@
 import React, {useState, useCallback} from "react";
 import axios from "axios"
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import './SellPage.css'
 
 
@@ -17,10 +20,13 @@ const SellPage = () => {
   const [telephone, setTelephone] = useState('')
   const [city, setCity] = useState('')
 
-
+  const notify = () => {
+    toast.success("Объявление отправлено!", {position: toast.POSITION.TOP_CENTER});
+}
   
 
   const createSell = useCallback(async () => {
+      
       if (!nameMark) return null
       try {
           await axios.post('/api/sell/add',{imageUrl,nameMark,infoAbout,gear,year,mileage,price,telephone,city}, {
@@ -42,6 +48,7 @@ const SellPage = () => {
       } catch (error) {
           console.log(error)
       }
+      notify()
   },[imageUrl,nameMark,infoAbout,gear,year,mileage,price,telephone,city])
 
   
@@ -160,6 +167,7 @@ const SellPage = () => {
       </form>
     </div>
     <button className="btn sell"  onClick={createSell}>Разместить объявление</button>
+    <ToastContainer />
   </div>
   )
   }

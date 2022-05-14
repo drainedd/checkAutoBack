@@ -1,6 +1,9 @@
 import axios from "axios"
 import React, { useState, useCallback, useEffect } from "react"
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import './OrderPage.scss'
 
 
@@ -10,6 +13,10 @@ const OrderPage = () => {
     const [about, setAbout] = useState('')
     
     const [todos, setTodos] = useState([])
+
+    const notify = () => {
+        toast.success("Заявка принята!", {position: toast.POSITION.TOP_CENTER});
+    }
 
     const getTodo = useCallback(async () => {
         try {
@@ -42,6 +49,7 @@ const OrderPage = () => {
         } catch (error) {
             console.log(error)
         }
+        notify()
     },[text, text2,about, todos, getTodo])
 
     useEffect(()=>{
@@ -67,10 +75,10 @@ const OrderPage = () => {
                         </div>
                         <div className="input-field col s12">
                         <input
-                                type="text"
+                                type="number"
                                 id="text2"
                                 name="input"
-                                className="validate"
+                                className="validate raz"
                                 value={text2}
                                 onChange={e => setText2(e.target.value)}
                             />
@@ -96,6 +104,7 @@ const OrderPage = () => {
                 </form>
                 
             </div>
+            <ToastContainer />
         </div>
     )
 }

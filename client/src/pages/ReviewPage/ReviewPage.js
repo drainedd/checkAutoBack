@@ -1,15 +1,21 @@
 import axios from "axios"
 import React, { useState, useCallback, useEffect } from "react"
 
-import './ReviewPage.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+
+import './ReviewPage.css'
 
 const ReviewPage = () => {
     const [name, setName] = useState('')
     const [text, setText] = useState('')
     
-    
     const [reviews, setReviews] = useState([])
+
+    const notify = () => {
+        toast.success("Отзыв отправлен!", {position: toast.POSITION.TOP_CENTER});
+    }
 
     const getReview = useCallback(async () => {
         try {
@@ -26,6 +32,7 @@ const ReviewPage = () => {
     },[])
 
     const createReview = useCallback(async () => {
+        
         if (!text) return null
         try {
             await axios.post('/api/review/add',{name,text}, {
@@ -36,11 +43,12 @@ const ReviewPage = () => {
                 setName('')
                 setText('')
                 getReview()
-                
+               
             })
         } catch (error) {
             console.log(error)
         }
+        notify()
     },[name, text, reviews, getReview])
 
     useEffect(()=>{
@@ -78,11 +86,14 @@ const ReviewPage = () => {
                     <button
                         className="btn right "
                         onClick={createReview}
-                    >Отправить отзыв</button>
+                    >Отправить отзыв
+                    </button>
+                   
                     </div>
                 </form>
                 
             </div>
+            <ToastContainer />
         </div>
     )
 }

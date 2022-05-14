@@ -1,14 +1,17 @@
-import { useState } from 'react';
+import React, { Component, useState } from 'react';
 import './CardFind.css';
 import Modal from './modal/modal';
 
 
+function Card (props) {
 
-function Card (props){
+    
     const [modalActive, setModalActive] = useState(false)
     return(
         <div className="card">
+            <div>
             <img className='carImage' width={205} height={154} src={props.imageUrl} alt="Car"/>
+            </div>
             <div>
             <h6 className="title">{props.nameMark}</h6>
             <div className="information">{props.infoAbout}</div>
