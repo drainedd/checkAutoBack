@@ -1,10 +1,12 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const authRouter = require('./routes/auth.route')
 
 const app = express()
 const PORT = process.env.PORT || 5000
 
 app.use(express.json({extended: true}))
+app.use('/auth', authRouter)
 app.use('/api/auth', require('./routes/auth.route'))
 app.use('/api/todo', require('./routes/todo.route'))
 app.use('/api/sell', require('./routes/sell.route'))
