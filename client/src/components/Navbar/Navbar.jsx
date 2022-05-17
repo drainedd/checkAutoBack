@@ -15,6 +15,9 @@ const Navbar = () => {
         </a>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li className="menuButton">
+            <Link  to="/admin" style={{color:'black', textDecoration:'none'}} >A</Link>
+            </li>
+            <li className="menuButton">
               <Link  to="/" style={{color:'black', textDecoration:'none'}} >Главная</Link>
             </li>
             <li className="menuButton">

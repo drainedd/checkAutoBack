@@ -4,7 +4,8 @@ const schema = new Schema({
     
     text: {type:String},
     text2: {type:String},
-    about: {type:String}
+    about: {type:String},
+    contact: {type: String}
     
 })
 

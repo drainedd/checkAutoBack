@@ -13,6 +13,7 @@ import SellPage from './pages/SellPage/SellPage';
 import SearchPage from './pages/SearchPage/SearchPage';
 import MyOrdersPage from './pages/MyOrdersPage/MyOrdersPage';
 import ReviewPage from './pages/ReviewPage/ReviewPage';
+import AdminPage from './pages/AdminPage/AdminPage'
 import chatImg from './chatbot.png'
 
 
@@ -34,6 +35,9 @@ function App() {
        <Navbar/>
        { routes }
        <Switch>
+          <Route path="/admin">
+            <AdminPage />
+          </Route>
           <Route path="/SearchPage">
             <SearchPage />
           </Route>

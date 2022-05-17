@@ -11,6 +11,7 @@ const OrderPage = () => {
     const [text, setText] = useState('')
     const [text2, setText2] = useState('')
     const [about, setAbout] = useState('')
+    const [contact, setContact] = useState('')
     
     const [todos, setTodos] = useState([])
 
@@ -35,7 +36,7 @@ const OrderPage = () => {
     const createTodo = useCallback(async () => {
         if (!text) return null
         try {
-            await axios.post('/api/todo/add',{text,text2,about}, {
+            await axios.post('/api/todo/add',{text,text2,about,contact}, {
                 headers:{'Content-Type': 'application/json'}
             })
             .then((response)=> {
@@ -43,6 +44,7 @@ const OrderPage = () => {
                 setText('')
                 setText2('')
                 setAbout('')
+                setContact('')
                 getTodo()
                 
             })
@@ -50,7 +52,7 @@ const OrderPage = () => {
             console.log(error)
         }
         notify()
-    },[text, text2,about, todos, getTodo])
+    },[text, text2,about,contact, todos, getTodo])
 
     useEffect(()=>{
         getTodo()
@@ -86,13 +88,25 @@ const OrderPage = () => {
                             
                         </div>
                         <div className="input-field col s12">
+                        <input
+                                type="text"
+                                id="contact"
+                                name="input"
+                                className="validate raz"
+                                value={contact}
+                                onChange={e => setContact(e.target.value)}
+                            />
+                            <label htmlFor="input">Как нам с Вами связаться?</label>
+                            
+                        </div>
+                        <div className="input-field col s12">
                         <i className="material-icons prefix">mode_edit</i>
                         <textarea id="icon_prefix2" 
                         className="materialize-textarea" 
                         value={about}
                         onChange={e => setAbout(e.target.value)}>  
                         </textarea>
-                        <label for="icon_prefix2">Введите дополнительную информацию/пожелания об автомобиле и ваш номер телефона</label>
+                        <label for="icon_prefix2">Введите дополнительную информацию/пожелания об автомобиле</label>
                         </div>
                     </div>
                     <div className="row">

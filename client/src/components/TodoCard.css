@@ -1,0 +1,14 @@
+.TodoCard{
+    width: 40%;
+    padding: 20px;
+    
+    background: #ffffff;
+    box-shadow: 0 0 3px black;
+    margin: 15px;
+    border-radius: 10px;
+}
+.krest{
+    color: red;
+    text-align: right;
+    
+}
